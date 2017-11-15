@@ -115,9 +115,7 @@ class Config(object):
         """
         try:
             value = self.config.get(section, option)
-            if value is None:
-                return None
-            else:
+            if value is not None:
                 return '\"%s\"' % value
         except ValueError as exc:
             msg = (

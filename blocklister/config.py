@@ -118,7 +118,7 @@ class Config(object):
             if value is None:
                 return None
             else:
-                return option
+                return '\"%s\"' % value
         except ValueError as exc:
             msg = (
                 "Value in section {0} option {1} cannot be cast as date and time"

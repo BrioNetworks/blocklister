@@ -30,12 +30,11 @@ class Blocklist(object):
     template = "firewall_addresslist.jinja2"
     gzip = False
 
-    def __init__(self, store, filename=None, refresh_list=timedelta(days=2), timeout=None):
+    def __init__(self, store, filename=None, refresh_list=timedelta(days=2)):
         self.name = self.__class__.__name__.lower()
         self.store = store
         self.filename = filename
         self.refresh_list = refresh_list
-        self.timeout = timeout
         self.fetcher = Fetcher(
             self.source, self.filepath, refresh=self.refresh_list)
 

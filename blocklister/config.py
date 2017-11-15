@@ -109,20 +109,5 @@ class Config(object):
                 .format(section, option))
             raise ConfigError(msg)
 
-    # def get_time(self, section, option, default=None):
-    #     """
-    #     Return the value of the option specified as a time.
-    #     """
-    #     try:
-    #         value = self.config.get(section, option)
-    #         if value is not None:
-    #             return '\"%s\"' % value
-    #     except ValueError as exc:
-    #         msg = (
-    #             "Value in section {0} option {1} cannot be cast as date and time"
-    #             .format(section, option))
-    #         raise ConfigError(msg)
-
-
 class ConfigError(Exception):
     pass

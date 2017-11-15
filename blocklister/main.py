@@ -96,7 +96,7 @@ def changelog():
     return response
 
 
-@limiter.limit("50 per day")
+@limiter.limit("500 per day")
 @app.route("/<string:blacklist>", methods=['GET'])
 def get_list(blacklist):
     # Get query arguments
@@ -133,7 +133,7 @@ def get_list(blacklist):
     return response
 
 
-@limiter.limit("10 per day")
+@limiter.limit("100 per day")
 @app.route("/multilist", methods=['GET'])
 def get_multiple_lists():
     # Get query arguments

@@ -1,3 +1,12 @@
+Changes from fork source
+---
+
+* Invalidation of openbl from readme.
+* Correcting the output rsc file according to the above.
+* Added timeout parameter to output rsc file. It is handled dynamically and 
+  prevented from being written to NAND.
+
+
 Blocklister
 ===========
 
@@ -24,10 +33,10 @@ here.
 * Spider - http://list.iblocklist.com/?list=mcvxsnihddgutbjfbghy
 * Hijacked - http://list.iblocklist.com/?list=usrcshglbiilevmyfhse
 * Dshield - http://list.iblocklist.com/?list=xpbqleszmajjesnzddhv
-* Malwaredomainlist - http://www.malwaredomainlist.com/hostslist/ip.txt
-* Openbl - https://www.openbl.org/lists/base.txt.gz
-* Openbl_180 - https://www.openbl.org/lists/base_180days.txt.gz
-* Openbl_360 - https://www.openbl.org/lists/base_360days.txt.gz
+* Malwaredomainlist - http://www.malwaredomainlist.com/hostslist/ip.txt  
+~~Openbl - https://www.openbl.org/lists/base.txt.gz~~ __close__  
+~~Openbl_180 - https://www.openbl.org/lists/base_180days.txt.gz~~ __close__  
+~~Openbl_360 - https://www.openbl.org/lists/base_360days.txt.gz~~ __close__  
 * Spamhausdrop - https://www.spamhaus.org/drop/drop.txt
 * Spamhausedrop - https://www.spamhaus.org/drop/edrop.txt
 * Blocklistde_All - http://lists.blocklist.de/lists/all.txt
@@ -205,8 +214,7 @@ Next enable the site and reload `apache`_, and the site should be up and running
 Issues or Requests
 ------------------
 
-For issues and requests please use the issue tracker on `github`_ or `email
-me`_.
+For issues and requests please use the issue tracker on `github`_.
 
 
 .. _iblocklist: https://www.iblocklist.com
@@ -217,8 +225,7 @@ me`_.
 .. _virtualenv: https://virtualenv.pypa.io
 .. _Apache Webserver: http://www.apache.org
 .. _apache: http://www.apache.org
-.. _Ubuntu 14.04: http://www.ubuntu.com
+.. _Ubuntu 16.04: http://www.ubuntu.com
 .. _pypi: http://www.pypi.org
 .. _supervisor: http://www.supervisord.org
 .. _github: http://www.github.com
-.. _email me: flazzarini@gmail.com

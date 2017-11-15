@@ -8,14 +8,6 @@
 # Now let's add the new ones
 /ip firewall address-list
 
-:if (timeout = "nil") do={
-  {%- for ip in ips %} 
-  add address="{{ ip }}" list="{{ listname }}" comment="{{ comment }}";
-  {%- endfor %} 
-} else={
-  {%- for ip in ips %}
-  add address="{{ ip }}" list="{{ listname }}" comment="{{ comment }}" timeout="{{ timeout }}";
-  {%- endfor %}
-};
-
-
+{%- for ip in ips %}
+add address="{{ ip }}" list="{{ listname }}" comment="{{ comment }}" timeout="{{ timeout }}";
+{%- endfor %}

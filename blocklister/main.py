@@ -119,12 +119,15 @@ def get_list(blacklist):
         "listname", default="%s_list" % bl.__class__.__name__.lower())
     comment = request.args.get(
         "comment", default="%s" % bl.__class__.__name__.title())
+    tout = request.args.get(
+        "timeout", default="%s" % bl.__class__.__name__)
 
     result = render_template(
         "mikrotik_addresslist.jinja2",
         ips=ips,
         listname=listname,
-        comment=comment
+        comment=comment,
+        timeout=tout
     )
     response = make_response(result, 200)
     response.headers['Content-Type'] = "text/plain"
@@ -141,6 +144,7 @@ def get_multiple_lists():
     listname = request.args.get("listname", default="blocklist")
     blists = [] if not blocklists else blocklists.split(',')
     comment = request.args.get("comment", default="multilist")
+    tout = request.args.get('timeout', default="1d")
     ips = []
 
     for blist in blists:
@@ -159,7 +163,8 @@ def get_multiple_lists():
         "mikrotik_addresslist.jinja2",
         ips=ips,
         listname=listname,
-        comment=comment)
+        comment=comment,
+        timeout=tout)
     response = make_response(result, 200)
     response.headers['Content-Type'] = "text/plain"
     return response

@@ -15,7 +15,7 @@ limiter = Limiter(app, headers_enabled=True)
 config = Config()
 store = config.get('blocklister', 'store', default="/tmp")
 dedupe = config.get_boolean('blocklister', 'deduplicate', default=False)
-timeout = config.get_time('blocklister', 'timeout', default=False)
+timeout = config.get('blocklister', 'timeout', default=False)
 
 @app.errorhandler(IOError)
 def handle_filenotavailable(exc):

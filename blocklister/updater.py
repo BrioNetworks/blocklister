@@ -20,7 +20,7 @@ class Updater(Thread):
             'blocklister', 'update_interval', default=300)
         self.refresh_list = self.config.get_int(
             'blocklister', 'refresh_list', default=2)
-        self.timeout = self.config.get_time(
+        self.timeout = self.config.get(
             'blocklister', 'timeout', default="1d")
 
     def run(self):

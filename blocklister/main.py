@@ -119,7 +119,7 @@ def get_list(blacklist):
         "listname", default="%s_list" % bl.__class__.__name__.lower())
     comment = request.args.get(
         "comment", default="%s" % bl.__class__.__name__.title())
-    tout = request.args.get("timeout")
+    tout = request.args.get("timeout", default="1d")
 
     result = render_template(
         "mikrotik_addresslist.jinja2",

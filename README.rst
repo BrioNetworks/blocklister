@@ -60,7 +60,7 @@ and behind an `Apache Webserver`_.
 Dependencies
 ~~~~~~~~~~~~
 
-The dependencies listed here are meant for `Ubuntu 14.04`_.
+The dependencies listed here are meant for `Ubuntu 16.04`_.
 
 .. code-block:: bash
 

@@ -62,7 +62,7 @@ Dependencies
 
 The dependencies listed here are meant for [Ubuntu 16.04](http://www.ubuntu.com).
 
-```bash
+```shell
     sudo apt-get install apache2 libapache2-mod-wsgi python-virtualenv \
      python-dev supervisor
 ```
@@ -76,7 +76,7 @@ also create a folders for log files and for the `wsgi` script we are going to
 use later on in [apache](http://www.apache.org).
 
 
-```
+```shell
     sudo useradd -c "Blocklister User" -d /var/www/blocklister -m blocklister
     sudo install -d -m 775 -o www-data -g blocklister /var/www/blocklister/logs
     sudo install -d -m 755 -o blocklister -g blocklister /var/www/blocklister/wsgi
@@ -91,7 +91,7 @@ This will get you the latest version. The package hasn't been published on
 
 
 
-```bash
+```shell
     sudo -u blocklister -i
     virtualenv env
     ./env/bin/pip install http://www.github.com/flazzarini/archive/master.zip
@@ -142,7 +142,7 @@ this. In order to do this add the following configuration file to
 Next start ``supervisorctl`` and reread the configuration file and fire up
 ``blocklister-updater``.
 
-```bash
+```shell
     sudo supervisorctl
     supervisor> reread
     blocklister-updater: available
@@ -172,7 +172,7 @@ Apache Config
 Now all that's left to do is to get apache up and running. First make sure that
 you have ``mod-wsgi`` enabled.
 
-```bash
+```shell
     a2enmod wsgi
     service apache2 reload
 ```
@@ -205,7 +205,7 @@ Now put the following content into
 
 Next enable the site and reload [apache](http://www.apache.org), and the site should be up and running.
 
-```bash
+```shell
     sudo a2ensite blocklister
     sudo service apache2 reload
 ```

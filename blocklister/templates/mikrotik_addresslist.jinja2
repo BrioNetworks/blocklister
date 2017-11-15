@@ -9,6 +9,6 @@
 /ip firewall address-list
 
 {%- for ip in ips %}
-add address="{{ ip }}" list="{{ listname }}" comment="{{ comment }}"
+add address="{{ ip }}" list="{{ listname }}" comment="{{ comment }}" timeout="1d"
 {%- endfor %}
 

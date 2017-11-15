@@ -7,8 +7,8 @@ reqs = [str(ir.req) for ir in install_reqs]
 
 NAME = "blocklister"
 DESCRIPTION = "Create Mikrotik Firewall address-lists and offer them via http"
-AUTHOR = "Frank Lazzarini"
-AUTHOR_EMAIL = "flazzarini@gmail.com"
+AUTHOR = "kometchtech"
+AUTHOR_EMAIL = "kometch@gmail.com"
 VERSION = open(join(NAME, 'version.txt')).read().strip()
 LONG_DESCRIPTION = open("README.rst").read()
 

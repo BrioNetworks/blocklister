@@ -3,7 +3,7 @@
 store = /tmp/
 
 ; Update interval for Updater Daemon in seconds
-update_interval = 120
+update_interval = 300
 
 ; Locally stored list should get older than (in days)
 refresh_list = 2
@@ -14,3 +14,9 @@ whitelist_ips = 127.0.0.1 \
 
 ; Activate deduplication of IPs
 deduplicate = true
+
+; Validity period of address-list
+; Persistence: <null>
+; timeformat: hh:mm:ss
+; dateformat: xd
+timeout = 1d 00:00:00

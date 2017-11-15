@@ -116,7 +116,7 @@ deduplicate      |Summarize sequential IPs into ranges
 ```ini
     [blocklister]
     store = /tmp
-    update_interval = 120
+    update_interval = 300
     refresh_list = 2
     deduplicate = true
 ```

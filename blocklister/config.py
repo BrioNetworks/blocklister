@@ -1,4 +1,5 @@
 import logging
+import datetime
 from future.standard_library import install_aliases
 install_aliases()  # noqa
 
@@ -105,6 +106,22 @@ class Config(object):
         except ValueError as exc:
             msg = (
                 "Value in section {0} option {1} cannot be cast as boolean"
+                .format(section, option))
+            raise ConfigError(msg)
+
+
+    def get_time(self, section, option):
+        """
+        Return the value of the option specified as a time.
+        """
+        try:
+            if option is None:
+                return None
+            else:
+                return option 
+        except ValueError as exc:
+            msg = (
+                "Value in section {0} option {1} cannot be cast as date and time"
                 .format(section, option))
             raise ConfigError(msg)
 

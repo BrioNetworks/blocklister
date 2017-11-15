@@ -10,7 +10,7 @@ DESCRIPTION = "Create Mikrotik Firewall address-lists and offer them via http"
 AUTHOR = "kometchtech"
 AUTHOR_EMAIL = "kometch@gmail.com"
 VERSION = open(join(NAME, 'version.txt')).read().strip()
-LONG_DESCRIPTION = open("README.rst").read()
+LONG_DESCRIPTION = open("README.md").read()
 
 setup(
     name=NAME,

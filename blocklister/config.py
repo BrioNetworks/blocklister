@@ -114,7 +114,8 @@ class Config(object):
         Return the value of the option specified as a time.
         """
         try:
-            if option is None:
+            value = self.config.get(section, option)
+            if value is None:
                 return None
             else:
                 return option

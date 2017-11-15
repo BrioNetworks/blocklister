@@ -109,7 +109,7 @@ class Config(object):
                 .format(section, option))
             raise ConfigError(msg)
 
-    def get_time(self, section, option):
+    def get_time(self, section, option, default=None):
         """
         Return the value of the option specified as a time.
         """

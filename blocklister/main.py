@@ -15,7 +15,7 @@ limiter = Limiter(app, headers_enabled=True)
 config = Config()
 store = config.get('blocklister', 'store', default="/tmp")
 dedupe = config.get_boolean('blocklister', 'deduplicate', default=False)
-timeout = config.get_time('blocklister', 'timeout', default="1d")
+timeout = config.get('blocklister', 'timeout', default="1d")
 
 @app.errorhandler(IOError)
 def handle_filenotavailable(exc):
@@ -96,7 +96,7 @@ def changelog():
     return response
 
 
-@limiter.limit("50 per day")
+@limiter.limit("500 per day")
 @app.route("/<string:blacklist>", methods=['GET'])
 def get_list(blacklist):
     # Get query arguments

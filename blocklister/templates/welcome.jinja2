@@ -59,7 +59,14 @@ automatically.
 
 /system script \
   add name="Blocklister_download_Ads" source="\
-  /tool fetch url=\"https://blocklister.gefoo.org/ads\" dst-path=\"ads.rsc\";\
+  :do {
+    :log info "Download start";
+    [/tool fetch url=\"https://blocklister.gefoo.org/ads\" dst-path=\"ads.rsc\"];
+  } on-error={
+    :log warning "Download error! retry one!";
+    delay 30s;
+    [/tool fetch url=\"https://blocklister.gefoo.org/ads\" dst-path=\"ads.rsc\"];
+  }
   /import file-name=\"ads.rsc\";"
 
 
@@ -67,7 +74,7 @@ Source
 ------
 
 Source code of blocklister is available at
-http://www.github.com/flazzarini/blocklister.  Please feel free to report any
+https://github.com/kometchtech/blocklister.  Please feel free to report any
 issues using the gituhub issue tracker.
 
 

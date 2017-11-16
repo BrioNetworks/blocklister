@@ -16,7 +16,6 @@ config = Config()
 store = config.get('blocklister', 'store', default="/tmp")
 dedupe = config.get_boolean('blocklister', 'deduplicate', default=False)
 
-
 @app.errorhandler(IOError)
 def handle_filenotavailable(exc):
     msg = "File on disk is not available"
@@ -96,7 +95,7 @@ def changelog():
     return response
 
 
-@limiter.limit("50 per day")
+@limiter.limit("500 per day")
 @app.route("/<string:blacklist>", methods=['GET'])
 def get_list(blacklist):
     # Get query arguments
@@ -114,24 +113,29 @@ def get_list(blacklist):
         smr = Summerizer(ips)
         ips = smr.summary()
 
+    # get timeout
+    timeout = config.get('blocklister', 'timeout', default="1d")
+
     # Get User variables if any
     listname = request.args.get(
         "listname", default="%s_list" % bl.__class__.__name__.lower())
     comment = request.args.get(
         "comment", default="%s" % bl.__class__.__name__.title())
+    tout = request.args.get("timeout", default="1d")
 
     result = render_template(
         "mikrotik_addresslist.jinja2",
         ips=ips,
         listname=listname,
-        comment=comment
+        comment=comment,
+        timeout=timeout
     )
     response = make_response(result, 200)
     response.headers['Content-Type'] = "text/plain"
     return response
 
 
-@limiter.limit("10 per day")
+@limiter.limit("100 per day")
 @app.route("/multilist", methods=['GET'])
 def get_multiple_lists():
     # Get query arguments
@@ -141,7 +145,9 @@ def get_multiple_lists():
     listname = request.args.get("listname", default="blocklist")
     blists = [] if not blocklists else blocklists.split(',')
     comment = request.args.get("comment", default="multilist")
+    tout = request.args.get('timeout', default="1d")
     ips = []
+    tout = request.args.get("timeout", default=None)
 
     for blist in blists:
         try:
@@ -159,7 +165,8 @@ def get_multiple_lists():
         "mikrotik_addresslist.jinja2",
         ips=ips,
         listname=listname,
-        comment=comment)
+        comment=comment,
+        timeout=tout)
     response = make_response(result, 200)
     response.headers['Content-Type'] = "text/plain"
     return response

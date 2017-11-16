@@ -17,9 +17,11 @@ class Updater(Thread):
         self.store = self.config.get(
             'blocklister', 'store', default="/tmp")
         self.interval = self.config.get_int(
-            'blocklister', 'update_interval', default=120)
+            'blocklister', 'update_interval', default=300)
         self.refresh_list = self.config.get_int(
             'blocklister', 'refresh_list', default=2)
+        self.timeout = self.config.get(
+            'blocklister', 'timeout', default="1d")
 
     def run(self):
         LOG.info("Start Blocklister-Updater")
@@ -51,6 +53,7 @@ def run():
     URLLOG.setLevel(logging.WARN)
     u = Updater()
     u.run()
+
 
 if __name__ == "__main__":
     run()

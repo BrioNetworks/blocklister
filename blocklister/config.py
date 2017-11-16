@@ -108,6 +108,5 @@ class Config(object):
                 .format(section, option))
             raise ConfigError(msg)
 
-
 class ConfigError(Exception):
     pass

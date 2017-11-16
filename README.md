@@ -1,12 +1,3 @@
-Changes from fork source
-------------------------
-
-* Invalidation of openbl from readme.
-* Correcting the output rsc file according to the above.
-* Added timeout parameter to output rsc file. It is handled dynamically and 
-  prevented from being written to NAND.
-
-
 Blocklister
 ===========
 
@@ -14,6 +5,14 @@ Blocklister
 commonly known Internet Blocklists such as [iblocklist](https://www.iblocklist.com) and [DShield](http://feeds.dshield.org/block.txt). The
 lists are updated once every 2 days. ``Blocklister`` is heavily inspired by
 [Joshaven Potter's blog post](http://joshaven.com/resources/tricks/mikrotik-automatically-updated-address-list).
+
+Changes from fork source
+------------------------
+
+* Invalidation of openbl from readme.
+* Correcting the output rsc file according to the above.
+* Added timeout parameter to output rsc file. It is handled dynamically and
+  prevented from being written to NAND.
 
 Currently supported lists
 -------------------------
@@ -47,7 +46,6 @@ here.
 * Blocklistde_Ftp - http://lists.blocklist.de/lists/ftp.txt
 * Blocklistde_Strongips - http://lists.blocklist.de/lists/strongips.txt
 
-
 Install
 -------
 
@@ -55,7 +53,6 @@ To install ``Blocklister`` on your machine make sure you have [python 2.7](http:
 [python 3](http://www.python.org) with [virtualenv](https://virtualenv.pypa.io) installed. Follow
 the next few steps to get the application up and running with a dedicated user
 and behind an [Apache Webserver](http://www.apache.org).
-
 
 Dependencies
 ------------
@@ -67,7 +64,6 @@ The dependencies listed here are meant for [Ubuntu 16.04](http://www.ubuntu.com)
      python-dev supervisor
 ```
 
-
 Setup user
 ----------
 
@@ -75,21 +71,17 @@ In this step we are going to create an individual user for ``Blocklister`` and
 also create a folders for log files and for the `wsgi` script we are going to
 use later on in [apache](http://www.apache.org).
 
-
 ```shell
     sudo useradd -c "Blocklister User" -d /var/www/blocklister -m blocklister
     sudo install -d -m 775 -o www-data -g blocklister /var/www/blocklister/logs
     sudo install -d -m 755 -o blocklister -g blocklister /var/www/blocklister/wsgi
 ```
 
-
 Install application
 -------------------
 
 This will get you the latest version. The package hasn't been published on
 [pypi](http://www.pypi.org) yet.
-
-
 
 ```shell
     sudo -u blocklister -i
@@ -104,7 +96,6 @@ The configuration file can be put in one of the following places
 ``/etc/blocklister/blocklister.conf``, ``~/.blocklister.conf`` or
 ``~/blocklister.conf``. The following options are available.
 
-
  Parameter       |Description
 -----------------|-----------------------------------------------
 store            |Disk location to be used for storage
@@ -112,11 +103,10 @@ update_interval  |Update interval for Updater Daemon (in seconds)
 refresh_list     |Refresh lists after x days (in days)
 deduplicate      |Summarize sequential IPs into ranges
 
-
 ```ini
     [blocklister]
     store = /tmp
-    update_interval = 120
+    update_interval = 300
     refresh_list = 2
     deduplicate = true
 ```

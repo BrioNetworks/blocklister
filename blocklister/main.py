@@ -15,7 +15,6 @@ limiter = Limiter(app, headers_enabled=True)
 config = Config()
 store = config.get('blocklister', 'store', default="/tmp")
 dedupe = config.get_boolean('blocklister', 'deduplicate', default=False)
-timeout = config.get('blocklister', 'timeout', default="1d")
 
 @app.errorhandler(IOError)
 def handle_filenotavailable(exc):
@@ -114,6 +113,9 @@ def get_list(blacklist):
         smr = Summerizer(ips)
         ips = smr.summary()
 
+    # get timeout
+    timeout = config.get('blocklister', 'timeout', default="1d")
+
     # Get User variables if any
     listname = request.args.get(
         "listname", default="%s_list" % bl.__class__.__name__.lower())
@@ -124,14 +126,15 @@ def get_list(blacklist):
         "mikrotik_addresslist.jinja2",
         ips=ips,
         listname=listname,
-        comment=comment
+        comment=comment,
+        timeout=timeout
     )
     response = make_response(result, 200)
     response.headers['Content-Type'] = "text/plain"
     return response
 
 
-@limiter.limit("10 per day")
+@limiter.limit("100 per day")
 @app.route("/multilist", methods=['GET'])
 def get_multiple_lists():
     # Get query arguments
@@ -142,6 +145,7 @@ def get_multiple_lists():
     blists = [] if not blocklists else blocklists.split(',')
     comment = request.args.get("comment", default="multilist")
     ips = []
+    tout = request.args.get("timeout", default=None)
 
     for blist in blists:
         try:
@@ -159,7 +163,8 @@ def get_multiple_lists():
         "mikrotik_addresslist.jinja2",
         ips=ips,
         listname=listname,
-        comment=comment)
+        comment=comment,
+        timeout=tout)
     response = make_response(result, 200)
     response.headers['Content-Type'] = "text/plain"
     return response

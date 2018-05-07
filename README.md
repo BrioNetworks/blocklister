@@ -86,7 +86,7 @@ This will get you the latest version. The package hasn't been published on
 ```shell
     sudo -u blocklister -i
     virtualenv env
-    ./env/bin/pip install http://www.github.com/flazzarini/archive/master.zip
+    ./env/bin/pip install https://github.com/kometchtech/blocklister/archive/master.zip
 ```
 
 Configuration
